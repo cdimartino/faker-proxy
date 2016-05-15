@@ -23,7 +23,7 @@ to the desired method.
 
 ##API
 
-I can do what Faker can do! Explore an [automatically generated](/methods)
+I can do what Faker can do! Explore an [automatically generated](https://faker-proxy.herokuapp.com/methods)
 view of the Faker API see what data it can fake for you today.  All methods are clickable refs and
 will excercise the API.
 
