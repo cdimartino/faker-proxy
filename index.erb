@@ -5,7 +5,7 @@ for a comprehensive list.
 <% modules.each do |mod| %>
   <h1><%= mod %></h1>
   <ul>
-  <% mod.public_methods(false).each do |method| %>
+  <% mod.methods(false).sort.each do |method| %>
     <li><%= method %></li>
   <% end %>
   </ul>

@@ -18,7 +18,11 @@ get '/' do
 end
 
 get '/methods' do
-  erb :index, locals: { modules: Faker.constants.sort.map { |const| Kernel.const_get("Faker::#{const}") } }
+  erb :index, locals: {
+    modules: Faker.constants.sort.map do |const|
+      modularize(const)
+    end
+  }
 end
 
 get '/:mod/:method/?*?' do |mod, method, extra_params|
@@ -42,14 +46,18 @@ def to_params params_from_user
   end
 end
 
+def modularize mod
+  Kernel.const_get("Faker::#{mod.capitalize}")
+end
+
 def methodize mod, method
-  klass = Kernel.const_get("Faker::#{mod.capitalize}")
+  klass = modularize(mod)
   check_publicity(klass, method)
-  klass.public_method(method.to_sym)
+  klass.method(method.to_sym)
 end
 
 def check_publicity klass, method
-  unless klass.public_methods(false).include?(method.to_sym)
+  unless klass.methods(false).include?(method.to_sym)
     raise NameError.new(
       "#{klass}.#{method} is not allowed.  Must not be an inherited method.",
       "#{klass}.#{method}"
