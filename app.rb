@@ -17,6 +17,10 @@ get '/' do
   markdown :README
 end
 
+get '/methods' do
+  erb :index, locals: { modules: Faker.constants.sort.map { |const| Kernel.const_get("Faker::#{const}") } }
+end
+
 get '/:mod/:method/?*?' do |mod, method, extra_params|
   method = methodize(mod, method)
   method.call(*to_params(extra_params)).to_json

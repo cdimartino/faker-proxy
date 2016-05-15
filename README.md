@@ -24,3 +24,14 @@ to the desired method.
 ##Try me!
 
 [Yes - we are live folks!](http://faker-proxy.herokuapp.com)
+
+```sh
+curl http://faker-proxy.herokuapp.com/team/name
+"Arkansas sorcerors"
+
+curl http://faker-proxy.herokuapp.com/hipster/words
+["retro","chicharrones","cronut"]
+
+curl http://faker-proxy.herokuapp.com/hipster/words/42
+["chicharrones","plaid","forage","pop-up","distillery","slow-carb","forage","selfies","portland","aesthetic","sustainable","lumbersexual","ramps","microdosing","Godard","semiotics","heirloom","gentrify","post-ironic","hammock","squid","fap","scenester","williamsburg","vinegar","locavore","artisan","90's","health","actually","freegan","paleo","cold-pressed","cliche","stumptown","cleanse","wolf","austin","8-bit","bespoke","gastropub","authentic"]%
+```
