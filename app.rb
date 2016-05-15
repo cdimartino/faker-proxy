@@ -18,11 +18,15 @@ get '/' do
 end
 
 get '/methods' do
-  erb :index, locals: {
+  erb :methods, locals: {
     modules: Faker.constants.sort.map do |const|
       modularize(const)
     end
   }
+end
+
+get '/:mod' do |mod|
+  erb :methods, locals: { modules: [modularize(mod.capitalize)] }
 end
 
 get '/:mod/:method/?*?' do |mod, method, extra_params|
@@ -47,11 +51,11 @@ def to_params params_from_user
 end
 
 def modularize mod
-  Kernel.const_get("Faker::#{mod.capitalize}")
+  Kernel.const_get("Faker::#{mod}")
 end
 
 def methodize mod, method
-  klass = modularize(mod)
+  klass = modularize(mod.capitalize)
   check_publicity(klass, method)
   klass.method(method.to_sym)
 end

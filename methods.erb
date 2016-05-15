@@ -3,10 +3,11 @@ from the public methods on each module.  Consult the faker docs
 for a comprehensive list.
 
 <% modules.each do |mod| %>
-  <h1><%= mod %></h1>
+  <% mod_name = mod.to_s.split('::').last.downcase %>
+  <h1><a href="/<%= mod_name %>"><%= mod %></a></h1>
   <ul>
   <% mod.methods(false).sort.each do |method| %>
-    <li><%= method %></li>
+    <li><a href="/<%= mod_name %>/<%= method %>"><%= method %></a></li>
   <% end %>
   </ul>
 <% end %>
