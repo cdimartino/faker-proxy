@@ -4,11 +4,18 @@ require 'bundler/setup'
 require 'sinatra'
 require 'sinatra/reloader' if development?
 
+require 'rdiscount'
+
 require 'json'
 
 require 'faker'
 
 set :show_exceptions, :after_handler
+set :views, File.dirname(__FILE__)
+
+get '/' do
+  markdown :README
+end
 
 get '/:mod/:method/?*?' do |mod, method, extra_params|
   method = methodize(mod, method)

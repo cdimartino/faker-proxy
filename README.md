@@ -23,6 +23,4 @@ to the desired method.
 
 ##Try me!
 
-Yes - we are live folks:
-
-[http://faker-proxy.herokuapp.com]
+[Yes - we are live folks!](http://faker-proxy.herokuapp.com)
